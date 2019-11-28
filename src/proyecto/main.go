@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"proyecto/otra"
+	//"encoding/json"
+	//"errors"
 )
 
 func main(){
@@ -14,7 +16,7 @@ func main(){
 
 	autoX := NewAuto("Ford","Nuevo", "a3")
 	autoZ := NewAuto("Chevrolet","Viejo", "b6")
-	autoY := NewAuto("lalala","Masomeno", "b4")
+	autoY := NewAuto("lalala","Antiguo", "b4")
 	agenciaX := NewAgencia()
 	agenciaX.AgregarAuto(autoX)
 	agenciaX.AgregarAuto(autoZ)
@@ -27,6 +29,65 @@ func main(){
 	autoB := agenciaX.DevolverAuto(1)*/
 	autoH := agenciaX.DevolverAutoByPatente("b4")
 	fmt.Println(autoH.GetModelo())
+
+
+
+	//PUNTEROS
+	/*		
+	a := 5 
+	b := 10
+
+	var d*int 
+	d  = &b
+
+	fmt.Println(a)
+	fmt.Println(&a)
+	fmt.Println(&b)
+	fmt.Println(d)
+	fmt.Println(&d)*/
+
+
+	/*//MARSHAL
+	myString := "hola como andas"
+
+	fmt.Println(myString)
+
+	var a []byte
+
+	a, _ = json.Marshal(myString) //Convertir un string a un arreglo de bytes
+
+	fmt.Println(a)
+
+	//UNMARSHAL
+	var otroString string
+
+	_= json.Unmarshal(a, &otroString) // Convertir un  arr de bytes a string 
+
+	fmt.Println("otroString", otroString)*/
+
+/* 	EJEMPLO DE MARSHAL CON UN OBJETO
+	miAuto := Auto{
+		marca : "Renault",
+		modelo : "Nuevo",
+	}
+
+	fmt.Println(miAuto)
+
+	miAutoMarshalled, _ := json.Marshal(miAuto)
+	fmt.Println(miAutoMarshalled)
+	fmt.Println(string(miAutoMarshalled))
+
+	var reqAuto Auto
+	_ = json.Unmarshal(miAutoMarshalled,&reqAuto)
+	fmt.Println("reqAuto", reqAuto)
+*/
+
+
+
+
+
+
+
 }
 
 type Agencia struct{
@@ -82,10 +143,10 @@ func NewAuto(marca string, modelo string, patente string) Auto{
 		patente: patente,
 	}
 }
-/*
+
 func (a *Agencia) EliminarAuto(pos int){
 
-	if pos ==0 {
+	/*if pos == 0 {
 		if len(a.autos)>1{
 		a.autos = a.autos[1:len(a.autos)]
 	}else{
@@ -96,7 +157,7 @@ func (a *Agencia) EliminarAuto(pos int){
 	else if pos == len(a.autos)-1{
 		a.autos = a.autos[0:len(a.autos)-1]
 	}
-	else{
+	else{*/
 	aux := a.autos[0:pos]
 	aux2 := a.autos[pos+1:len(a.autos)]
 	
@@ -105,7 +166,10 @@ func (a *Agencia) EliminarAuto(pos int){
 	}
 	a.autos = aux
 }
-}*/
+
+
+
+
 
 
 func (a *Agencia) DevolverAuto (pos int) Auto{
